@@ -1,0 +1,28 @@
+How to Run
+    php artisan test
+    php artisan test --testsuite=Feature
+    php artisan test .\tests\Feature\CategoryTest.php
+    php artisan test --filter=CategoryTest => ClassName ! FileName
+    php artisan test --filter=test_example => SpecificFunction
+------------------------------------------------------------------------------------------------
+U Can Create your custom testsuite
+    1- Create your folder in test
+    2- add folder name in phpunit.xml
+                <testsuites>
+                    <testsuite name="Smoke">
+                        <directory>tests/Smoke</directory>
+                    </testsuite>
+                </testsuites>
+------------------------------------------------------------------------------------------------
+NameConvension [mandatory]
+    1- NameTest 
+        -> should suffix with (Test) 
+        -> To Run It 
+        => ex: CategoryTest
+    2- FunctionName 
+        -> should prefix with (test)
+        -> snake_case   //snake_case,camelCase (allowed) - PascalCase,Kabab-Case (not allowed)
+        => ex: test_any_name
+
+
+
