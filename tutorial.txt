@@ -4,6 +4,8 @@ How to Run
     php artisan test .\tests\Feature\CategoryTest.php
     php artisan test --filter=CategoryTest => ClassName ! FileName
     php artisan test --filter=test_example => SpecificFunction
+Another Commands:
+    php artisan migrate --env=testing // change to another env
 ------------------------------------------------------------------------------------------------
 U Can Create your custom testsuite
     1- Create your folder in test
@@ -23,6 +25,33 @@ NameConvension [mandatory]
         -> should prefix with (test)
         -> snake_case   //snake_case,camelCase (allowed) - PascalCase,Kabab-Case (not allowed)
         => ex: test_any_name
+------------------------------------------------------------------------------------------------
+3A Rule In Testing
+    - Arrange   => Prepare Vars
+    - Act       => Simulate Request
+    - Assert    => Take Output From PHPUnit
+------------------------------------------------------------------------------------------------
+Create vs. Make
+    - Make      : create users without storing in database   => User::factory()->make();
+    - Create    : create users & store in database           => User::factory()->create();
+------------------------------------------------------------------------------------------------
+    *********************** Category Test Cases ************************
+    How to think about test cases: (ex: categories)
+        - Category Retrieval ( all - pagination - show ) - Categories page
+            Test That Categories page open successfully 
+            Test That all categories can be retrieved successfully
+            Test pagination work successfully
 
+        - Category Creation & Validation            
+            Test category create page rendered successfully
+            Test category can be created successfully
+            Test category name is required
+            Test category name must be at least 3 characters long
+            Test category name must be at most 255 characters long
+            Test category description is optional
+            Test category description must be at most 1000 characters long
+        - Category Updating
+        - Category Deleting
+        - Category Permission
 
 
