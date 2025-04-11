@@ -15,6 +15,7 @@ class TutorialTest extends TestCase
 
         $response->assertStatus(200);
     }
+
     /**
      * A basic feature test example.
      */
@@ -24,6 +25,7 @@ class TutorialTest extends TestCase
 
         $response->assertStatus(200);
     }
+
     /**
      * A basic feature test example.
      */
@@ -34,7 +36,7 @@ class TutorialTest extends TestCase
         $response->assertStatus(200);
     }
 
-    //---------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------
     public function example_2(): void // will Not Execute Because of the name
     {
         $response = $this->get('/');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Resources\CategoryResource;
-use App\Http\Requests\StoreCategoryRequest;
 
 class ApiCategoryController extends Controller
 {
@@ -18,6 +18,7 @@ class ApiCategoryController extends Controller
     {
         $data = $request->validated();
         $category = Category::create($data);
+
         return new CategoryResource($category);
     }
 

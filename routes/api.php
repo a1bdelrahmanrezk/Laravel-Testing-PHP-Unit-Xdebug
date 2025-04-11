@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiCategoryController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,7 +24,6 @@ Route::post('/login', function (Request $request) {
 
     return response()->json(['message' => 'Invalid credentials'], 401);
 });
-
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('categories', ApiCategoryController::class);

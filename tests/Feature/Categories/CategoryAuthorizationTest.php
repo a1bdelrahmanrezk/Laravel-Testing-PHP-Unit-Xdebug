@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Categories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Category;
+use Tests\TestCase;
 
 class CategoryAuthorizationTest extends TestCase
 {
@@ -14,19 +12,19 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->get(route('categories.index'));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
-    
+
     public function test_guest_cannot_access_categories_create_page(): void
     {
         $response = $this->get(route('categories.create'));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
-    
+
     public function test_guest_cannot_store_categories(): void
     {
         $category = Category::factory()->make();
@@ -34,8 +32,8 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->post(route('categories.store', $category));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     public function test_guest_cannot_access_categories_show_page(): void
@@ -45,8 +43,8 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->get(route('categories.show', $category));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     public function test_guest_cannot_access_categories_edit_page(): void
@@ -56,8 +54,8 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->get(route('categories.edit', $category));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     public function test_guest_cannot_update_categories(): void
@@ -68,8 +66,8 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->patch(route('categories.update', $category), $updatedCategory->toArray());
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     public function test_guest_cannot_delete_categories(): void
@@ -79,9 +77,7 @@ class CategoryAuthorizationTest extends TestCase
         $response = $this->delete(route('categories.destroy', $category));
 
         $response
-        ->assertStatus(302)
-        ->assertRedirect(route('login'));
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
-
-
 }
