@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Categories;
 
+use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
@@ -10,32 +11,21 @@ use App\Models\Category;
 class CategoryRetrievelTest extends TestCase
 {
     use RefreshDatabase;
-
+    use DatabaseTruncation;
     
     protected function setUp(): void // function run before each test
     {
         parent::setUp(); // Call Testing Environment Methods
         $this->actingAs(User::factory()->create());
     }
-    public function test_check_if_categories_page_opens_successfully(): void
-    {
-
-
-            $response = $this->get('/categories');
-
-            $response
-            ->assertStatus(200)
-            ->assertViewIs('categories.index')
-            ->assertSeeText('Add New Category');
-    }
     public function test_check_if_categories_page_contains_categories()
     {
-        Category::factory()->count(4)->create();
+        Category::factory()->count(5)->create();
         
         $response = $this->get('/categories');
         
         $response->assertViewHas('categories', function ($categories) { 
-            return $categories->count() === 4;
+            return $categories->count() === 5; // issue in 4 (found in DB) + 5 (count) if we don't use DatabaseTruncation;
         });
     }
     public function test_check_if_pagination_works_successfully()
@@ -54,6 +44,18 @@ class CategoryRetrievelTest extends TestCase
             return $categories->count() === 5;
         });
     }
+    public function test_check_if_categories_page_opens_successfully(): void
+    {
+
+
+            $response = $this->get('/categories');
+
+            $response
+            ->assertStatus(200)
+            ->assertViewIs('categories.index')
+            ->assertSeeText('Add New Category');
+    }
+
     public function test_check_if_categories_show_page_contains_the_right_content(): void
     {
         $category = Category::factory()->create();

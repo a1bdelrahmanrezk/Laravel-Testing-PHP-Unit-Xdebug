@@ -51,7 +51,40 @@ Create vs. Make
             Test category description is optional
             Test category description must be at most 1000 characters long
         - Category Updating
+            Test category update page rendered successfully
+            Test category can be updated successfully
+            Test category name is required
+            Test category name must be at least 3 characters long
+            Test category name must be at most 255 characters long
+            Test category description is optional
+            Test category description must be at most 1000 characters long
         - Category Deleting
+            Test that category can be deleted successfully and removed from DB
         - Category Permission
-
-
+            Test guest cannot access categories page
+            Test guest cannot access category creation page test guest cannot store a new category
+            Test guest cannot access category edit page
+            Test guest cannot access category show page
+            Test guest cannot update a category
+            Test guest cannot delete a category
+------------------------------------------------------------------------------------------------
+Test Coverage:
+    how much test cases cover the source code program (ex: 100% test cover 30% project )
+------------------------------------------------------------------------------------------------
+Test Coverage Tool:
+    Xdebug:
+        1- download tool (xdebug.dll)
+        2- move xdebug.dll file to your php folder "\php-8.3.8-Win32-vs16-x64\ext\xdebug.dll"
+        3- in your php folder go to php.ini "\php-8.3.8-Win32-vs16-x64\php.ini" at the end of file // relative path => Z://laragon/php/php-8.3.8-Win32-vs16-x64/php.ini
+                - zend_extension="/php-8.3.8-Win32-vs16-x64/ext/xdebug.dll" // put extension relative path
+                - xdebug.mode=debug,coverage
+                - xdebug.start_with_request=yes
+                - xdebug.client_host=127.0.0.1
+                - xdebug.client_port=9009
+    To make sure U install correctly: use in terminal 
+                - php -v
+                - U will see in last line (with Xdebug v3.4.2, Copyright (c) 2002-2025, by Derick Rethans)
+------------------------------------------------------------------------------------------------
+Test Coverage Run:
+    - php artisan test --coverage
+    - php artisan test --coverage --min=80
